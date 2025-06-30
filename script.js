@@ -4,38 +4,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const scrollArrow = document.getElementById("scrollArrow");
   const minimap = document.getElementById("minimap");
 
-  // Scroll con flecha ↓
+  // Flecha scroll ↓
   scrollArrow?.addEventListener("click", () => {
     const currentScroll = container.scrollTop;
-    const nextSlide = [...slides].find(slide => slide.offsetTop > currentScroll + 10);
-    if (nextSlide) {
-      nextSlide.scrollIntoView({ behavior: "smooth" });
-    }
+    const next = [...slides].find(slide => slide.offsetTop > currentScroll + 10);
+    if (next) next.scrollIntoView({ behavior: "smooth" });
   });
 
-  // Crear puntos del minimapa
-  slides.forEach((slide, index) => {
+  // Minimapa puntos
+  slides.forEach((slide, i) => {
     const dot = document.createElement("div");
     dot.classList.add("minimap-dot");
-    if (index === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => {
-      slide.scrollIntoView({ behavior: "smooth" });
-    });
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => slide.scrollIntoView({ behavior: "smooth" }));
     minimap.appendChild(dot);
   });
 
-  // Activar punto según scroll
   function updateMinimap() {
-    const scrollPosition = container.scrollTop;
+    const scroll = container.scrollTop;
     slides.forEach((slide, i) => {
       const dot = minimap.children[i];
-      const slideTop = slide.offsetTop;
-      const slideHeight = slide.offsetHeight;
-
-      if (
-        scrollPosition >= slideTop - slideHeight / 2 &&
-        scrollPosition < slideTop + slideHeight / 2
-      ) {
+      const top = slide.offsetTop;
+      const height = slide.offsetHeight;
+      if (scroll >= top - height / 2 && scroll < top + height / 2) {
         dot.classList.add("active");
       } else {
         dot.classList.remove("active");
@@ -43,13 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Mostrar/ocultar flecha si estamos abajo
-  container.addEventListener("scroll", () => {
-    const bottomReached =
-      Math.abs(container.scrollHeight - container.scrollTop - container.clientHeight) < 10;
-    if (scrollArrow) scrollArrow.style.opacity = bottomReached ? "0" : "1";
-    updateMinimap();
-  });
-
+  container.addEventListener("scroll", updateMinimap);
   updateMinimap();
 });
