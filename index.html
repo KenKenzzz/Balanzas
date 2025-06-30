@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Presentación Scroll</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Contenedor principal de las diapositivas -->
+  <div class="container">
+    <section class="slide" style="background-image: url('1.jpg');"></section>
+    <section class="slide" style="background-image: url('2.jpg');"></section>
+    <section class="slide" style="background-image: url('3.jpg');"></section>
+    <section class="slide" style="background-image: url('4.jpg');"></section>
+    
+    <!-- Slide con texto sobre imagen, sin efecto -->
+    <section class="slide" style="background-image: url('5.jpg');">
+      <div class="slide-content">
+        <h2>Balanza moderna para mostrador K3 800</h2>
+        <p>
+          Las aplicaciones y funciones de la balanza moderna K3 800 son el pesaje en el mostrador de productos frescos y en la zona de autoservicio, el etiquetado de precios, el cobro y la visualización de contenidos multimedia. La interfaz de usuario capacitiva garantiza un manejo sencillo para el operador y el cliente.
+        </p>
+ <section class="slide" style="background-image: url('6.jpg');"></section>
+      </div>
+    </section>
+
+    <section class="slide" style="background-image: url('6.jpg');"></section>
+  </div>
+
+  <!-- Flecha de scroll hacia abajo -->
+  <div id="scrollArrow">↓</div>
+
+  <!-- Minimapa de secciones -->
+  <div class="minimap" id="minimap"></div>
+
+  <!-- Script principal -->
+  <script src="script.js"></script>
+</body>
+</html>
