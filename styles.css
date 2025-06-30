@@ -106,9 +106,11 @@ html, body {
     font-size: 1.3rem;
   }
 
-  .slide {
-    padding: 10px;
-    background-size: contain;
-    background-position: top center;
+ .slide {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #e7e7e7; /* relleno blanco si no cubre todo */
   }
+
 }
