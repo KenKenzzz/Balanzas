@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -8,74 +7,75 @@
 html, body {
   height: 100%;
   width: 100%;
+  font-family: sans-serif;
   overflow: hidden;
-  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Contenedor con scroll vertical */
+/* Scroll container */
 .container {
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
   overflow-y: scroll;
-  scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
 }
 
-/* Cada slide ocupa toda la pantalla (por defecto para pantallas grandes) */
+/* Slide base */
 .slide {
-  height: 100vh;
-  width: 100vw;
   scroll-snap-align: start;
-  background-color: #fff;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #fff;
   padding: 0;
   box-sizing: border-box;
   flex-direction: column;
 }
 
-/* Imagen dentro del slide */
+/* Slide image */
 .slide-img {
-  width: 100%;
-  height: auto;
+  max-width: 100%;
   max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  display: block;
 }
 
-/* Slide con texto encima (opcional) */
-.slide-content {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 30px;
-  border-radius: 10px;
-  color: white;
-  max-width: 90%;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  text-align: left;
+/* Altura solo en escritorio */
+@media (min-width: 769px) {
+  .slide {
+    height: 100vh;
+  }
 }
 
-.slide-content h2 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+/* Altura dinámica en móvil */
+@media (max-width: 768px) {
+  .slide {
+    height: auto;
+  }
+
+  .slide-img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
 }
 
-/* Flecha de scroll */
+/* Flecha */
 #scrollArrow {
   position: fixed;
   bottom: 20px;
   right: 50%;
   transform: translateX(50%);
   font-size: 2.5rem;
-  color: white;
+  color: black;
   cursor: pointer;
-  transition: opacity 0.3s;
-  z-index: 20;
-  user-select: none;
+  z-index: 100;
 }
 
-/* Minimapa lateral */
+/* Minimapa */
 .minimap {
   position: fixed;
   left: 20px;
@@ -85,42 +85,19 @@ html, body {
   flex-direction: column;
   gap: 12px;
   z-index: 999;
-  pointer-events: auto;
 }
 
 .minimap-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.7);
-  border: 2px solid #000;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  transition: transform 0.3s, background 0.3s;
   cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
 }
 
 .minimap-dot.active {
   background: #00f260;
-  transform: scale(1.5);
-}
-
-/* ✅ MOBILE: quitar altura fija para que la imagen se adapte */
-@media (max-width: 768px) {
-  .slide {
-    height: auto;
-    padding: 0;
-  }
-
-  .slide-content {
-    font-size: 1rem;
-    padding: 20px;
-  }
-
-  .slide-content h2 {
-    font-size: 1.3rem;
-  }
-
-  .slide-img {
-    max-height: none;
-    object-fit: contain;
-  }
+  transform: scale(1.3);
 }
