@@ -106,20 +106,29 @@ html, body {
     font-size: 1.3rem;
   }
 
- .slide {
-  height: 100vh;
+.slide {
   width: 100vw;
   scroll-snap-align: start;
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
-  background: #fff;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+/* solo aplicamos altura fija a pantallas grandes */
+@media (min-width: 769px) {
+  .slide {
+    height: 100vh;
+  }
 }
 
 .slide-img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: auto;
+  max-height: none;
   object-fit: contain;
 }
 
