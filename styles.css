@@ -1,0 +1,104 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Contenedor con scroll vertical */
+.container {
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+/* Cada slide ocupa toda la pantalla */
+.slide {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  scroll-snap-align: start;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease;
+  position: relative;
+}
+
+/* Flecha de scroll */
+#scrollArrow {
+  position: fixed;
+  bottom: 20px;
+  right: 50%;
+  transform: translateX(50%);
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  z-index: 20;
+  user-select: none;
+}
+
+.minimap {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999; /* 🔼 subir prioridad */
+  pointer-events: auto; /* permitir clics */
+}
+
+
+/* Minimapa lateral */
+.minimap {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 30;
+}
+
+.minimap-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+   background: rgba(255, 255, 255, 0.7); /* más visible */
+  border: 2px solid #000;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.minimap-dot.active {
+  background: #00f260;
+  transform: scale(1.5);
+}
+
+/* Barra de progreso vertical */
+.progress-container {
+  position: fixed;
+  right: 10px;
+  top: 0;
+  height: 100vh;
+  width: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.progress-bar {
+  width: 100%;
+  background: linear-gradient(to bottom, #00f260, #0575e6);
+  height: 0%;
+  transition: height 0.3s ease;
+}
