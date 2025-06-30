@@ -21,22 +21,29 @@ html, body {
   scroll-snap-type: y mandatory;
 }
 
-/* Cada slide ocupa toda la pantalla */
+/* Cada slide ocupa toda la pantalla (por defecto para pantallas grandes) */
 .slide {
   height: 100vh;
   width: 100vw;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
   scroll-snap-align: start;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 0;
   box-sizing: border-box;
+  flex-direction: column;
 }
 
-/* Slide con texto encima */
+/* Imagen dentro del slide */
+.slide-img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Slide con texto encima (opcional) */
 .slide-content {
   background-color: rgba(0, 0, 0, 0.6);
   padding: 30px;
@@ -54,6 +61,7 @@ html, body {
   margin-bottom: 10px;
 }
 
+/* Flecha de scroll */
 #scrollArrow {
   position: fixed;
   bottom: 20px;
@@ -95,8 +103,13 @@ html, body {
   transform: scale(1.5);
 }
 
-/* Responsive para móvil */
+/* ✅ MOBILE: quitar altura fija para que la imagen se adapte */
 @media (max-width: 768px) {
+  .slide {
+    height: auto;
+    padding: 0;
+  }
+
   .slide-content {
     font-size: 1rem;
     padding: 20px;
@@ -106,30 +119,8 @@ html, body {
     font-size: 1.3rem;
   }
 
-.slide {
-  width: 100vw;
-  scroll-snap-align: start;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  box-sizing: border-box;
-  flex-direction: column;
-}
-
-/* solo aplicamos altura fija a pantallas grandes */
-@media (min-width: 769px) {
-  .slide {
-    height: 100vh;
+  .slide-img {
+    max-height: none;
+    object-fit: contain;
   }
-}
-
-.slide-img {
-  width: 100%;
-  height: auto;
-  max-height: none;
-  object-fit: contain;
-}
-
 }
